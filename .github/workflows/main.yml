@@ -1,0 +1,12 @@
+name: My First CI
+on: [push] # 當有程式碼推送到任何分支時觸發
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest # 使用 GitHub 提供的 Ubuntu 虛擬機
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # 讓虛擬機存取你的程式碼
+
+      - name: Run a greeting
+        run: echo "Hello, GitHub Actions! 我的第一個自動化流程跑成功了！"
