@@ -10,3 +10,6 @@ jobs:
 
       - name: Run a greeting
         run: echo "Hello, GitHub Actions! 我的第一個自動化流程跑成功了！"
+
+      - name: Run a wrong command
+        run: nosuchcommand # 故意執行一個電腦看不懂的指令
