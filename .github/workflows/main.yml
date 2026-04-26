@@ -1,18 +1,30 @@
-name: Python Test CI
+name: Deploy to GitHub Pages
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # 只有當程式碼推送到 main 分支時才觸發
+
+permissions:
+  contents: write  # 必須開啟寫入權限，Actions 才能幫你推送到 gh-pages 分支
 
 jobs:
-  test-job:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 檢出程式碼
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: 設定 Python 環境
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Run test
+      - name: 執行 Python 測試
         run: python app.py
+
+      - name: 部署到 GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .        # 要部署哪個資料夾的內容（這裡選根目錄）
+          branch: gh-pages # 部署到這個分支
